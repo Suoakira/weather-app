@@ -18,7 +18,7 @@ const argv = yargs
     .alias('help', 'h')
     .argv
 
-
+debugger
     console.log(geocode)
 geocode.geocodeAddress(argv.a, (errorMessage, result) => {
     if (errorMessage) {
@@ -34,6 +34,7 @@ geocode.geocodeAddress(argv.a, (errorMessage, result) => {
         })
     }
 })
+
 
 
 
