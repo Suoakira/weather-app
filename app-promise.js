@@ -25,7 +25,17 @@ axios.get(geocodeURL)
         if (response.data.status === "ZERO_RESULTS") {
             throw new Error("Unable to find that address")
         }
-        console.log(response.data)
+        console.log(response.data.results)
+
+        let lat = response.data.results[0].locations[0].latLng.lat
+        let long = response.data.results[0].locations[0].latLng.lng
+        console.log(lat,long)
+        return axios(`https://api.darksky.net/forecast/${config.darkSKy}/${lat},${long}`)
+    })
+    .then((response) => {
+        let temperature = response.data.currently.temperature
+        let feelLike = response.data.currently.apparentTemperature
+    console.log(`Its currently ${temperature}. It feels like ${feelLike}`)
     })
     .catch((error) => {
         if (error.code === 'ENOTFOUND') {
